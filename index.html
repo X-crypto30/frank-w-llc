@@ -8,56 +8,91 @@
 <meta name="keywords" content="Business Consulting, Financial Planning, Project Management, LLC">
 <meta name="author" content="Frank & W LLC">
 <style>
-  /* Reset & Base */
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height:1.6; background:#f9f9f9; color:#333; scroll-behavior:smooth; transition: background 0.3s, color 0.3s; }
-  a { text-decoration:none; color:inherit; }
-  body.dark { background:#1a1a1a; color:#f0f0f0; }
-  body.dark header, body.dark footer { background:#333; }
-  body.dark .service-card, body.dark .contact-form, body.dark .newsletter { background:#222; box-shadow:0 4px 10px rgba(0,0,0,0.7); }
-  body.dark h2 { color:#4da6ff; }
+/* Reset & Base */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    background-color: #000; /* black background */
+    color: #fff;            /* white text */
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height:1.6;
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+}
+a { text-decoration:none; color:inherit; }
 
-  /* Sticky Navbar */
-  header { background:#1a73e8; color:#fff; padding:15px 40px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:1000; transition: background 0.3s; }
-  header h1 { font-size:1.8rem; }
-  nav a { margin-left:20px; font-weight:500; cursor:pointer; }
-  nav a.active { text-decoration:underline; }
-  nav a:hover { text-decoration:underline; }
-  .theme-toggle { margin-left:20px; padding:5px 10px; border:none; border-radius:6px; cursor:pointer; background:#fff; color:#1a73e8; font-weight:bold; transition: background 0.3s, color 0.3s; }
-  body.dark .theme-toggle { background:#1a73e8; color:#fff; }
+/* Sticky Navbar */
+header {
+    background:#111;
+    color:#fff;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+header h1 { font-size:1.8rem; }
+nav a { margin-left:20px; font-weight:500; cursor:pointer; }
+nav a.active { text-decoration:underline; }
+nav a:hover { text-decoration:underline; }
+.theme-toggle {
+    margin-left:20px; padding:5px 10px; border:none; border-radius:6px; cursor:pointer;
+    background:#ff6b00; color:#fff; font-weight:bold; transition: background 0.3s, color 0.3s;
+}
+.theme-toggle:hover { background:#e55b00; }
 
-  /* Hero */
-  .hero { background:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1650&q=80') no-repeat center/cover; height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; text-align:center; margin-top:60px; }
-  .hero h2 { font-size:3rem; margin-bottom:20px; opacity:0; transform:translateY(20px); transition: all 1s ease; }
-  .hero p { font-size:1.3rem; margin-bottom:30px; opacity:0; transform:translateY(20px); transition: all 1s 0.3s ease; }
-  .hero button { padding:15px 30px; font-size:1rem; border:none; border-radius:8px; background:#ff6b00; color:#fff; cursor:pointer; transition: transform 0.3s, background 0.3s; opacity:0; transform:translateY(20px); transition: all 1s 0.6s ease; }
-  .hero button:hover { transform:scale(1.05); background:#e55b00; }
+/* Hero Video Section */
+.hero {
+    position:relative; height:90vh; display:flex; justify-content:center; align-items:center; text-align:center; overflow:hidden;
+}
+.hero video {
+    position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;
+    filter: brightness(0.4); /* darken video for text visibility */
+}
+.hero-content { position:relative; z-index:2; }
+.hero h2 { font-size:3rem; margin-bottom:20px; opacity:0; transform:translateY(20px); transition: all 1s ease; color:#ff6b00; }
+.hero p { font-size:1.3rem; margin-bottom:30px; opacity:0; transform:translateY(20px); transition: all 1s 0.3s ease; color:#fff; }
+.hero button { padding:15px 30px; font-size:1rem; border:none; border-radius:8px; background:#ff6b00; color:#fff; cursor:pointer; opacity:0; transform:translateY(20px); transition: all 1s 0.6s ease; }
+.hero button:hover { background:#e55b00; transform:scale(1.05); }
 
-  /* Sections */
-  section { padding:80px 20px; max-width:1200px; margin:0 auto; opacity:0; transform:translateY(30px); transition: all 1s ease; }
-  h2 { font-size:2rem; margin-bottom:20px; color:#1a73e8; transition: color 0.3s; }
-  p { font-size:1.1rem; line-height:1.8; }
+/* Sections */
+section { padding:80px 20px; max-width:1200px; margin:0 auto; opacity:0; transform:translateY(30px); transition: all 1s ease; background:#111; border-radius:10px; margin-bottom:40px; }
+h2 { font-size:2rem; margin-bottom:20px; color:#ff6b00; }
+p { font-size:1.1rem; line-height:1.8; color:#ddd; }
 
-  /* Services */
-  .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-  .service-card { background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s, opacity 1s; opacity:0; transform:translateY(30px); }
-  .service-card:hover { transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
+/* Services */
+.services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+.service-card {
+    background:#222; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(255,255,255,0.05);
+    transition: transform 0.3s, box-shadow 0.3s, opacity 1s; opacity:0; transform:translateY(30px);
+}
+.service-card:hover { transform:translateY(-5px); box-shadow:0 8px 20px rgba(255,255,255,0.1); }
 
-  /* Contact & Form */
-  .contact-form, .newsletter { background:#fff; padding:30px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); max-width:600px; margin:0 auto; }
-  .contact-form input, .contact-form textarea, .newsletter input { width:100%; padding:12px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px; font-size:1rem; }
-  .contact-form input:invalid, .contact-form textarea:invalid, .newsletter input:invalid { border-color:red; }
-  .contact-form button, .newsletter button { padding:12px 25px; background:#1a73e8; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:1rem; transition: background 0.3s; }
-  .contact-form button:hover, .newsletter button:hover { background:#155ab6; }
+/* Counters */
+.counters { display:flex; justify-content:space-around; margin-top:40px; }
+.counter { text-align:center; }
+.counter h3 { font-size:2rem; color:#ff6b00; }
+.counter p { font-size:1.1rem; color:#ddd; }
 
-  /* Map */
-  #map { width:100%; height:400px; border-radius:10px; margin-top:30px; }
+/* Newsletter & Contact */
+.contact-form, .newsletter { background:#222; padding:30px; border-radius:10px; box-shadow:0 4px 10px rgba(255,255,255,0.05); max-width:600px; margin:0 auto; }
+.contact-form input, .contact-form textarea, .newsletter input {
+    width:100%; padding:12px; margin-bottom:15px; border:1px solid #555; border-radius:6px; background:#000; color:#fff;
+}
+.contact-form input:invalid, .contact-form textarea:invalid, .newsletter input:invalid { border-color:#ff6b00; }
+.contact-form button, .newsletter button { padding:12px 25px; background:#ff6b00; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:1rem; transition: background 0.3s; }
+.contact-form button:hover, .newsletter button:hover { background:#e55b00; }
 
-  /* Footer */
-  footer { background:#1a73e8; color:#fff; text-align:center; padding:20px 0; margin-top:40px; transition: background 0.3s; }
+/* Map */
+#map { width:100%; height:400px; border-radius:10px; margin-top:30px; }
 
-  /* Responsive */
-  @media(max-width:768px){ header { flex-direction:column; } nav a, .theme-toggle { margin:10px; } .hero h2 { font-size:2rem; } .hero p { font-size:1rem; } }
+/* Footer */
+footer { background:#111; color:#fff; text-align:center; padding:20px 0; margin-top:40px; }
+footer p { color:#aaa; }
+
+/* Responsive */
+@media(max-width:768px){ header { flex-direction:column; } nav a, .theme-toggle { margin:10px; } .hero h2 { font-size:2rem; } .hero p { font-size:1rem; } }
 </style>
 </head>
 <body>
@@ -73,10 +108,16 @@
   </nav>
 </header>
 
+<!-- Hero -->
 <section class="hero">
-  <h2>Empowering Your Business for Success</h2>
-  <p>Top-tier consulting, financial planning, and project management solutions for growth and efficiency.</p>
-  <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+  <video autoplay muted loop playsinline>
+    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <h2>Empowering Your Business for Success</h2>
+    <p>Top-tier consulting, financial planning, and project management solutions.</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+  </div>
 </section>
 
 <section id="about">
@@ -91,13 +132,18 @@
     <div class="service-card"><h3>Financial Planning</h3><p>Budgeting, forecasting, and financial guidance to maximize profits.</p></div>
     <div class="service-card"><h3>Project Management</h3><p>Ensure timely delivery and efficient resource management.</p></div>
   </div>
+  <div class="counters">
+    <div class="counter"><h3 data-target="120">0</h3><p>Projects Completed</p></div>
+    <div class="counter"><h3 data-target="75">0</h3><p>Clients Served</p></div>
+    <div class="counter"><h3 data-target="10">0</h3><p>Years in Business</p></div>
+  </div>
 </section>
 
 <section id="newsletter">
   <h2>Subscribe to Our Newsletter</h2>
   <div class="newsletter">
-    <form id="newsletterForm">
-      <input type="email" name="email" placeholder="Your Email" required>
+    <form id="newsletterForm" action="https://YOUR_MAILCHIMP_POST_URL" method="post" target="_blank">
+      <input type="email" name="EMAIL" placeholder="Your Email" required>
       <button type="submit">Subscribe</button>
     </form>
   </div>
@@ -122,60 +168,68 @@
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS User ID
+emailjs.init("YOUR_USER_ID"); // Replace with EmailJS User ID
 
-  // Theme toggle
-  function toggleTheme() {
-    document.body.classList.toggle('dark');
-    document.querySelector('.theme-toggle').textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
-  }
+// Theme toggle
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  document.querySelector('.theme-toggle').textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
+}
 
-  // Scroll reveal & navbar highlight
-  const sections = document.querySelectorAll('section, .hero, .service-card');
-  const navLinks = document.querySelectorAll('.nav-link');
+// Scroll animations and navbar highlight
+const sections = document.querySelectorAll('section, .hero, .service-card');
+const navLinks = document.querySelectorAll('.nav-link');
+const counters = document.querySelectorAll('.counter h3');
 
-  const reveal = () => {
-    const windowBottom = window.innerHeight + window.scrollY;
-    sections.forEach(sec => {
-      if (windowBottom > sec.offsetTop + 100) { sec.style.opacity = 1; sec.style.transform = 'translateY(0)'; }
-    });
-
-    // Navbar highlight
-    sections.forEach(sec => {
-      if(window.scrollY >= sec.offsetTop - 60){
-        navLinks.forEach(link => link.classList.remove('active'));
-        const id = sec.id;
-        const activeLink = document.querySelector(`nav a[href="#${id}"]`);
-        if(activeLink) activeLink.classList.add('active');
-      }
-    });
-  };
-  window.addEventListener('scroll', reveal);
-  window.addEventListener('load', reveal);
-
-  // Contact form
-  document.getElementById('contactForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
-      from_name: this.name.value,
-      from_email: this.email.value,
-      message: this.message.value
-    }).then(()=>{ alert('Message sent!'); this.reset(); }).catch(()=>{ alert('Error. Try again.'); });
+const reveal = () => {
+  const windowBottom = window.innerHeight + window.scrollY;
+  sections.forEach(sec => {
+    if(windowBottom > sec.offsetTop + 100){ sec.style.opacity=1; sec.style.transform='translateY(0)'; }
   });
 
-  // Newsletter form (mockup)
-  document.getElementById('newsletterForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    alert('Subscribed successfully!');
-    this.reset();
+  // Navbar highlight
+  sections.forEach(sec => {
+    if(window.scrollY >= sec.offsetTop - 60){
+      navLinks.forEach(link => link.classList.remove('active'));
+      const id = sec.id;
+      const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+      if(activeLink) activeLink.classList.add('active');
+    }
   });
 
-  // Google Maps
-  function initMap(){
-    const companyLocation = { lat:40.7128, lng:-74.0060 };
-    const map = new google.maps.Map(document.getElementById("map"), { zoom:12, center:companyLocation });
-    new google.maps.Marker({ position:companyLocation, map:map });
-  }
+  // Counter animation
+  counters.forEach(counter=>{
+    if(counter.innerText=='0'){
+      const update=()=>{
+        const target=+counter.getAttribute('data-target');
+        const current=+counter.innerText;
+        const increment=target/200;
+        if(current<target){ counter.innerText=Math.ceil(current+increment); requestAnimationFrame(update); }
+        else{ counter.innerText=target; }
+      };
+      if(window.scrollY + window.innerHeight > counter.parentElement.offsetTop + 50) update();
+    }
+  });
+};
+window.addEventListener('scroll', reveal);
+window.addEventListener('load', reveal);
+
+// Contact form
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
+    from_name: this.name.value,
+    from_email: this.email.value,
+    message: this.message.value
+  }).then(()=>{ alert('Message sent!'); this.reset(); }).catch(()=>{ alert('Error. Try again.'); });
+});
+
+// Google Maps
+function initMap(){
+  const companyLocation = { lat:40.7128, lng:-74.0060 };
+  const map = new google.maps.Map(document.getElementById("map"), { zoom:12, center:companyLocation });
+  new google.maps.Marker({ position:companyLocation, map:map });
+}
 </script>
 <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </body>
